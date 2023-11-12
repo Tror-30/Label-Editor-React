@@ -1,0 +1,44 @@
+#row-2-right,
+#row-2-left {
+    text-align: center;
+}
+
+#input-name-logo {
+    display: inline-flex;
+    width: 170px;
+    height: 25px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#select-label-name,
+#select-rotat-logo {
+    display: inline-flex;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+#button-save-label-code,
+#button-save-logo-code {
+    cursor: pointer;
+    padding: 5px;
+    display: inline-flex;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+#input-code-label,
+#input-code-logo {
+    width: 90%;
+    height: 65%;
+    border-radius: 5px;
+}

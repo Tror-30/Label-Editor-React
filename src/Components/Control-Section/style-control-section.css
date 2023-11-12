@@ -1,0 +1,28 @@
+#control-button {
+    display: none;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.button-control-section {
+    color: aliceblue;
+    margin-left: 10px;
+    height: 25px;
+    display: inline-flex;
+    padding: 5px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#button-section-editor {
+    background-color: #176fd7;
+}
+
+#button-section-user-editor {
+    background-color: rgb(172, 170, 170);
+}
+
+#button-section-logo-editor {
+    background-color: rgb(172, 170, 170);
+}
