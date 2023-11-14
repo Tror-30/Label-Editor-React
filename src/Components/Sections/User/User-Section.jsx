@@ -1,12 +1,7 @@
 import './style-user-section.css';
-import { getLoginsUser, addLoginUser, getDataUser, addDataUser, editorDataUser, addNewUser, clearDataUser, deleteUser, controlGetAutoPrint, controlHistoryAutoPrint, addHistoryAutoPrint } from './function-user-section';
-
-document.getElementById('new-add-user').addEventListener('click', addNewUser);
-document.getElementById('clear-data-user').addEventListener('click', clearDataUser);
-document.getElementById('delet-data-user').addEventListener('click', deleteUser);
-document.getElementById('save-data-user').addEventListener('click', editorDataUser);
-document.getElementById('select-login').addEventListener("change", getDataUser);
-
+import { getDataUser, editorDataUser, addNewUser, clearDataUser, deleteUser } from './function-user-section';
+import { postControlAutoPrint } from '../../function-row';
+import Error from '../../Alert-Errors/Error';
 //* Секция редактирования и контроля пользователей
 function UserSection() {
     return (
@@ -33,7 +28,7 @@ function UserSection() {
                         </div>
                         <div className="person-date">
                             <p id="text-stan-user">Стан:</p>
-                            <select class="select-text-user" id="select-stan-user">
+                            <select className="select-text-user" id="select-stan-user">
                                 <option value=""></option>
                                 <option value="mill350">Стан-350</option>
                                 <option value="mill210">Стан-210</option>
@@ -45,15 +40,15 @@ function UserSection() {
                             <p id="text-name-user">ФИО:</p>
                             <input type="text" className="input-text-user" id="input-name-user" />
                         </div>
-                        <button id="new-add-user">Новый</button>
-                        <button id="save-data-user">Сохранить</button>
-                        <button id="delet-data-user">Удалить</button>
-                        <button id="clear-data-user">Очистить</button>
+                        <button id="new-add-user" onClick={addNewUser}>Новый</button>
+                        <button id="save-data-user" onClick={editorDataUser}>Сохранить</button>
+                        <button id="delet-data-user" onClick={deleteUser}>Удалить</button>
+                        <button id="clear-data-user" onClick={clearDataUser}>Очистить</button>
                     </div>
                     <div id="block-management-user">
                         <div id="header-management-user">
                             <p id="header-select-user">Список Пользователей</p>
-                            <select name="select-login-user" id="select-login">
+                            <select name="select-login-user" id="select-login" onChange={getDataUser}>
                             </select>
                         </div>
                         <div id="section-management-user-date">
@@ -68,7 +63,7 @@ function UserSection() {
                     <div id="header-ro-1-right">
                         Контроль отправки на Авто. Печать
                     </div>
-                    <button id="new-data-user-control">Обновить Данные</button>
+                    <button id="new-data-user-control" onClick={postControlAutoPrint}>Обновить Данные</button>
                     <div id="block-row-1-right">
                         <div className="block-control-print-stan">
                             <div id="control-print-350-stan">
@@ -178,6 +173,7 @@ function UserSection() {
                     </div>
                 </div>
             </div>
+            <Error />
         </div>
     );
 };

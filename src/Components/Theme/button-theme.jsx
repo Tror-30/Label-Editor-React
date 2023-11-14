@@ -7,7 +7,7 @@ function ButtonTheme() {
         <div id="q-container">
             <div className="main">
                 <input type="checkbox" id="hidcheck" hidden onChange={themeOn} />
-                <label className="capsule" for="hidcheck" id="capsule-id">
+                <label className="capsule" htmlFor="hidcheck" id="capsule-id">
                     <div className="circle"></div>
                     <div className="text-signs">
                         <span id="on"></span>

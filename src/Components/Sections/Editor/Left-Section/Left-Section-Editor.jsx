@@ -1,14 +1,51 @@
 import './style-left-section-editor.css';
-
+import { logoChoice, addDiv, deleteBlock, insertBarCode, addParams, apply, assigningElement, сleanTheTag, buttonEditor, savelabelBack, fattyOff, fatty } from '../../../function-row';
+import { turnRight, turnLeft, moveRight, moveLeft, moveDown, moveUp } from '../../../function-move-elem.js';
+import { dropdowBlock } from './function-left-section-editor';
+import { inputTextHistory, optionSearch, liHistory } from '../../../function-row';
 
 //* Контент слева
 function LeftSectionEditor() {
+    //TODO: Функции для работы с меню символы!
+    const simbol = {
+        //* Функция вызова меню Символы
+        simbolOn: function () {
+            let tableSimbol = document.getElementById('tableSimbol');                                  //? Получаем Таблицу символов
+            tableSimbol.style.height = "535px";
+        },
+        //* Функция скрытия меню Символы
+        simbolOff: function () {
+            let tableSimbol = document.getElementById('tableSimbol');                                  //? Получаем Таблицу символов
+            tableSimbol.style.height = "0px";
+        }
+    };
+    //* Функция получения элемента списка на который нажали
+    async function getListLabel(event) {
+        liHistory = event.target.closest('li');
+        await inputTextHistory(liHistory);
+    };
+    //* Функция поиска имени бирки
+    optionSearch.addEventListener('keyup', function () {
+        let ulHistory = document.querySelector('.option-history');
+        let filter, li, i, textValue;
+        filter = optionSearch.value.toUpperCase();
+        li = ulHistory.getElementsByTagName('li');
+        for (i = 0; i < li.length; i++) {
+            let liCount = li[i];
+            textValue = liCount.textContent || liCount.innerText;
+            if (textValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = '';
+            } else {
+                li[i].style.display = 'none';
+            };
+        };
+    });
     return (
         <div id="container-left">
             <div id="logo-left-select">
                 <p id="left-select-logo">Выберите логотип</p>
                 <div id="logo-select">
-                    <select id="logo_selection" name="select-logos">
+                    <select id="logo_selection" name="select-logos" onChange={logoChoice}>
                     </select>
                 </div>
             </div>
@@ -23,18 +60,18 @@ function LeftSectionEditor() {
                         <p className="text-padding">Отступ слева</p>
                         <input type="number" id="input-padding-left" />
                     </div>
-                    <button id="apply-indents">Применить</button>
+                    <button id="apply-indents" onClick={assigningElement}>Применить</button>
                 </div>
                 <div className="string">
                     <p id="text-string">Добавить строку</p>
                     <input id="editor-text-string" type="text" placeholder="Введите данные" />
-                    <button id="add-string">Добавить</button>
-                    <button id="delete-string">Удалить</button>
-                    <button id="buttonSinbol">Символы</button>
-                    <button id="bar">Штрих Код</button>
+                    <button id="add-string" onClick={addDiv}>Добавить</button>
+                    <button id="delete-string" onClick={deleteBlock}>Удалить</button>
+                    <button id="buttonSinbol" onClick={simbol.simbolOn}>Символы</button>
+                    <button id="bar" onClick={insertBarCode}>Штрих Код</button>
                     <div id="tableSimbol">
                         <div id="off">
-                            <button id="buttonOff">X</button>
+                            <button id="buttonOff" onClick={simbol.simbolOff}>X</button>
                         </div>
                         <p>A - Ǻ ǻ α ά Ά Ä ª ä Å À Á Â å ã â à á Ã</p>
                         <p>B - β ß Ђ</p>
@@ -62,7 +99,7 @@ function LeftSectionEditor() {
                     <p id="text-tags">Количество бирок</p>
                     <select id="number-tags" type="number">
                         <option value="1">1</option>
-                        <option selected="2">2</option>
+                        <option defaultValue="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -74,17 +111,17 @@ function LeftSectionEditor() {
                         <p className="text-padding">По пиксельно</p>
                         <input id="inpud-pixel" type="number" placeholder="px" />
                     </div>
-                    <button className="button-group" id="button-top">⬆</button>
-                    <button className="button-group" id="button-botton">⬇</button>
-                    <button className="button-group" id="button-left">⬅</button>
-                    <button className="button-group" id="button-right">➞</button>
-                    <button className="button-group" id="button-turn-left">↶</button>
-                    <button className="button-group" id="button-turn-right">↷</button>
+                    <button className="button-group" id="button-top" onClick={moveUp}>⬆</button>
+                    <button className="button-group" id="button-botton" onClick={moveDown}>⬇</button>
+                    <button className="button-group" id="button-left" onClick={moveLeft}>⬅</button>
+                    <button className="button-group" id="button-right" onClick={moveRight}>➞</button>
+                    <button className="button-group" id="button-turn-left" onClick={turnLeft}>↶</button>
+                    <button className="button-group" id="button-turn-right" onClick={turnRight}>↷</button>
                 </div>
                 <div className="bold">
                     <p className="text">Жирный шрифт</p>
-                    <button id="fatty">Установить</button>
-                    <button id="fatty-off">Убрать</button>
+                    <button id="fatty" onClick={fatty}>Установить</button>
+                    <button id="fatty-off" onClick={fattyOff}>Убрать</button>
                 </div>
                 <div id="scaling">
                     <p className="text">Размер Шрифта</p>
@@ -95,29 +132,29 @@ function LeftSectionEditor() {
                         <option value="20">50,40</option>
                         <option value="22">60,50</option>
                     </select>
-                    <button id="plus">Применить</button>
+                    <button id="plus" onClick={apply}>Применить</button>
                 </div>
                 <div id="settings-history">
                     <p id="histori-header">Сохранение шаблона бирки</p>
                     <input id="name-history-label" type="text" placeholder="Введите имя" />
-                    <button id="save-string">Сохранить шаблон</button>
+                    <button id="save-string" onClick={savelabelBack}>Сохранить шаблон</button>
                 </div>
                 <div id="addHistory">
                     <p id="addHistory-text">Список шаблонов бирок</p>
                     <div className="select-box-history">
-                        <div className="select-option-history">
-                            <input id="soValue" type="text" readonly name="" />
+                        <div className="select-option-history" onClick={dropdowBlock}>
+                            <input id="soValue" type="text" readOnly name="" />
                         </div>
                         <div className="content-history">
                             <div className="search">
                                 <input type="text" id="optionSearch" placeholder="Поиск" name="" />
                             </div>
-                            <ul className="option-history">
+                            <ul className="option-history" onClick={getListLabel}>
                             </ul>
                         </div>
                     </div>
-                    <button id="change-label">Новый шаблон</button>
-                    <button id="сlean-the-tag">Очистить бирку</button>
+                    <button id="change-label" onClick={buttonEditor}>Новый шаблон</button>
+                    <button id="сlean-the-tag" onClick={сleanTheTag}>Очистить бирку</button>
                 </div>
                 <div id="params">
                     <p id="text-params">Параметры Бирки</p>
@@ -138,7 +175,7 @@ function LeftSectionEditor() {
                         <option value="LOT">Лот-&lt&ltLOT&gt&gt</option>
                         <option value="CUTLENGTH">Длина-&lt&ltCUTLENGTH&gt&gt</option>
                     </select>
-                    <button id="button-params">Добавить</button>
+                    <button id="button-params" onClick={addParams}>Добавить</button>
                 </div>
             </div>
         </div>

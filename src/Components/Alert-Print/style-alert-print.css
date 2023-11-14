@@ -1,0 +1,18 @@
+#alert-printAuto,
+#alert-print {
+    display: none;
+    position: absolute;
+    top: 400px;
+    left: 850px;
+    text-align: center;
+    background-color: rgb(252, 252, 252);
+    border-radius: 10px;
+    border: 2px solid black;
+    z-index: 555;
+}
+
+#text-alert-print,
+#text-alert-printAuto {
+    margin: 10px;
+    font-size: 20px;
+}

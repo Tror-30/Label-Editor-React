@@ -1,8 +1,7 @@
-import { portDB } from "../Editor/function-editor";
+import { portDB } from "../../function-row";
+import { closeError, openError } from "../../Alert-Errors/function-error";
 
 export async function getLoginsUser() {
-    let error = document.getElementById('errors');
-    let errorText = document.getElementById('text-error');
     let listLogin;
     try {
         listLogin = await fetch(`http://${portDB}/api/spc/common/labels/get-users`, {
@@ -13,9 +12,10 @@ export async function getLoginsUser() {
         });
         listLogin = await listLogin.json();
     } catch {
-        errorText.innerText = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
-        errorText.style.display = 'block';
-        error.style.display = 'block';
+        let sms = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
+        let styleBlock = 'block';
+        let bagraundBlock = 'red';
+        openError( sms, styleBlock, bagraundBlock );
         setTimeout(closeError, 5000);
         return;
     };
@@ -44,11 +44,10 @@ export async function getDataUser() {
         });
         dataUser = await dataUser.json();
     } catch {
-        let error = document.getElementById('errors');
-        let errorText = document.getElementById('text-error');
-        errorText.innerText = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
-        errorText.style.display = 'block';
-        error.style.display = 'block';
+        let sms = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
+        let styleBlock = 'block';
+        let bagraundBlock = 'red';
+        openError( sms, styleBlock, bagraundBlock );
         setTimeout(closeError, 5000);
         return;
     };
@@ -65,8 +64,6 @@ export function addDataUser(dataUser) {
 };
 
 export async function editorDataUser() {
-    let error = document.getElementById('errors');
-    let errorText = document.getElementById('text-error');
     let login = document.getElementById('input-login-user').value;
     let password = document.getElementById('input-password-user').value;
     let role = document.getElementById('select-role-user').value;
@@ -94,22 +91,21 @@ export async function editorDataUser() {
         document.getElementById('select-role-user').value = '';
         document.getElementById('select-stan-user').value = '';
         document.getElementById('input-name-user').value = '';
-        errorText.innerText = 'Пользователь Сохранён';
-        errorText.style.display = 'block';
-        error.style.display = 'block';
-        error.style.backgroundColor = 'rgb(24, 173, 19)';
+        let sms = 'Пользователь Сохранён';
+        let styleBlock = 'block';
+        let bagraundBlock = 'rgb(24, 173, 19)';
+        openError( sms, styleBlock, bagraundBlock );
     } catch {
-        errorText.innerText = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
-        errorText.style.display = 'block';
-        error.style.display = 'block';
+        let sms = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
+        let styleBlock = 'block';
+        let bagraundBlock = 'red';
+        openError( sms, styleBlock, bagraundBlock );
     };
     setTimeout(closeError, 4000);
     return;
 };
 
 export async function addNewUser() {
-    let error = document.getElementById('errors');
-    let errorText = document.getElementById('text-error');
     let login = document.getElementById('input-login-user').value;
     let password = document.getElementById('input-password-user').value;
     let role = document.getElementById('select-role-user').value;
@@ -142,14 +138,15 @@ export async function addNewUser() {
         document.getElementById('select-role-user').value = '';
         document.getElementById('select-stan-user').value = '';
         document.getElementById('input-name-user').value = '';
-        errorText.innerText = 'Пользователь Добавлен';
-        errorText.style.display = 'block';
-        error.style.display = 'block';
-        error.style.backgroundColor = 'rgb(24, 173, 19)';
+        let sms = 'Пользователь Добавлен';
+        let styleBlock = 'block';
+        let bagraundBlock = 'rgb(24, 173, 19)';
+        openError( sms, styleBlock, bagraundBlock );
     } catch {
-        errorText.innerText = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
-        errorText.style.display = 'block';
-        error.style.display = 'block';
+        let sms = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
+        let styleBlock = 'block';
+        let bagraundBlock = 'red';
+        openError( sms, styleBlock, bagraundBlock );
     };
     setTimeout(closeError, 4000);
     return;
@@ -189,14 +186,15 @@ export async function deleteUser() {
         document.getElementById('select-role-user').value = '';
         document.getElementById('select-stan-user').value = '';
         document.getElementById('input-name-user').value = '';
-        errorText.innerText = 'Пользователь Удалён';
-        errorText.style.display = 'block';
-        error.style.display = 'block';
-        error.style.backgroundColor = 'rgb(24, 173, 19)';
+        let sms = 'Пользователь Удалён';
+        let styleBlock = 'block';
+        let bagraundBlock = 'rgb(24, 173, 19)';
+        openError( sms, styleBlock, bagraundBlock );
     } catch {
-        errorText.innerText = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
-        errorText.style.display = 'block';
-        error.style.display = 'block';
+        let sms = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
+        let styleBlock = 'block';
+        let bagraundBlock = 'red';
+        openError( sms, styleBlock, bagraundBlock );
     };
     setTimeout(closeError, 4000);
     return;
@@ -215,9 +213,10 @@ export async function controlGetAutoPrint() {
     //     listControl = await listLogin.json();
     //     return(listControl);
     // } catch {
-    //     errorText.innerText = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
-    //     errorText.style.display = 'block';
-    //     error.style.display = 'block';
+    //      let sms = 'Нет связи! Обратитесь в службу поддержки по номеру: 1032';
+    //      let styleBlock = 'block';
+    //      let bagraundBlock = 'red';
+    //      openError( sms, styleBlock, bagraundBlock );
     // };
     // setTimeout(closeError, 4000);
     return;
@@ -229,7 +228,7 @@ export async function controlHistoryAutoPrint() {
 
 export function addHistoryAutoPrint() {
     let blockDiv = document.createElement('div');
-    block.className = 'block-add-div-control';
+    //block.className = 'block-add-div-control';
     //block.inerrText = ;
     document.getElementById('history-get-auto-print').appendChild(blockDiv);
 };

@@ -1,11 +1,13 @@
 import './style-right-section-editor.css';
-
+import { tagColor } from './function-right-section-editor.js';
+import { resetSelection } from '../../../function-move-elem.js';
+import { alertAutoHandPrint, alertHandPrint } from '../../../function-backand-editor.js';
 
 //* Контент справа
 function RightSectionEditor() {
     return (
         <div id="container-right">
-            <select id="select-label-backgraund">
+            <select id="select-label-backgraund" onChange={tagColor}>
                 <option value="white">Белый</option>
                 <option value="blue">Синий</option>
                 <option value="deepskyblue">Тёмно-голубой</option>
@@ -19,7 +21,7 @@ function RightSectionEditor() {
                 <option value="limegreen">Салатовый</option>
                 <option value="dimgray">Тусклый-серый</option>
             </select>
-            <div id="label-content">
+            <div id="label-content" onClick={resetSelection}>
                 <div id="label-borders">
                 </div>
             </div>
@@ -28,8 +30,8 @@ function RightSectionEditor() {
                 <p id="text-printer-2">Отправить шаблон на авто печать</p>
             </div>
             <div id="button-printer">
-                <button id="sending">Авто</button>
-                <button id="chyase-label">Ручная</button>
+                <button id="sending" onClick={alertAutoHandPrint}>Авто</button>
+                <button id="chyase-label" onClick={alertHandPrint}>Ручная</button>
             </div>
         </div>
     );
