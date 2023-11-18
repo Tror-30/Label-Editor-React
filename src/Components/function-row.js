@@ -8,7 +8,7 @@ import { moveUp, moveDown, moveLeft, moveRight, elementBorder } from './function
 import { closeError, openError } from './Alert-Errors/function-error.js';
 //--------------------------------------------------------------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', personCookie, getLoginsUser, postControlAutoPrint, themeCookie, defaultLabelNameStan);
-document.addEventListener('optionSearch', )
+
 
 //! Глобальные Константы и переменные
 

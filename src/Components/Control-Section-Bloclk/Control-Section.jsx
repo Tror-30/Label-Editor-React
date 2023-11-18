@@ -1,9 +1,9 @@
 import './style-control-section.css';
 import { openLabelEditorSection, openUserSection, openLogoEditorSection } from './function-control-section';
+ 
 
-
-//* Блок управления Секциями
-function ControlSection() {
+    //* Блок управления Секциями
+    function ControlSection() {
     return (
         <div id="control-button">
             <div className="button-control-section" id="button-section-editor" onClick={openLabelEditorSection}>Редактор Шаблонов</div>

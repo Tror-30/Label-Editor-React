@@ -25,7 +25,7 @@ function LeftSectionEditor() {
         await inputTextHistory(liHistory);
     };
     //* Функция поиска имени бирки
-    optionSearch.addEventListener('keyup', function () {
+    optionSearch?.addEventListener('keyup', function () {
         let ulHistory = document.querySelector('.option-history');
         let filter, li, i, textValue;
         filter = optionSearch.value.toUpperCase();
